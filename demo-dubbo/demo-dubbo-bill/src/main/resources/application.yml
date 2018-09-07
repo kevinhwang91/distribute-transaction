@@ -1,0 +1,74 @@
+spring:
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/bill?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: kevin
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            maximum-pool-size: 15
+    quartz:
+        datasource:
+            url: jdbc:mysql://127.0.0.1:3306/qrtz_bill?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+            username: root
+            password: kevin
+            driver-class-name: com.mysql.cj.jdbc.Driver
+        properties:
+            org:
+                quartz:
+                    scheduler:
+                        instanceName: clusteredScheduler
+                        instanceId: AUTO
+                    jobStore:
+                        class: org.quartz.impl.jdbcjobstore.JobStoreTX
+                        driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+                        tablePrefix: QRTZ_
+                        isClustered: true
+                        clusterCheckinInterval: 10000
+                        useProperties: false
+                    threadPool:
+                        class: org.quartz.simpl.SimpleThreadPool
+                        threadCount: 10
+                        threadPriority: 5
+                        threadsInheritContextClassLoaderOfInitializingThread: true
+
+dubbo:
+    application:
+        name: billDubboService
+        parameter:
+            qos:
+                enable: false
+    protocol:
+        name: dubbo
+        port: 20889
+        threadpool: cached
+    registry:
+        protocol: zookeeper
+        address: zookeeper://127.0.0.1:2181
+    provider:
+        version: 1.0.0
+    consumer:
+        version: 1.0.0
+
+tcc:
+    repository:
+        domain: BILL
+        tbSuffix: _BILL
+    recover:
+        maxRetryCount: 30
+        recoverDuration: 60
+        cronExpression: 0/30 * * * * ?
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/bill?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        username: root
+        password: kevin
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+            maximum-pool-size: 15
+    isTested: true
+
+logging:
+    level:
+        root: info
+        org.jackson.puppy.demo.dubbo.bill.dao: debug
+    pattern:
+        console: '%d{yyyy-MM-dd HH:mm:ss} %clr([%t]){cyan} %clr(%-5p) %clr(%C{3}){magenta} \(%F:%L\) - %m%n'

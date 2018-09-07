@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="test_order_service">
+        <dubbo:parameter key="qos.enable" value="false"/>
+    </dubbo:application>
+
+    <dubbo:protocol name="dubbo" port="20887"/>
+
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+
+    <dubbo:provider version="1.0.0"/>
+
+    <dubbo:consumer version="1.0.0"/>
+
+    <dubbo:reference
+            id="orderService"
+            interface="org.jackson.puppy.demo.dubbo.order.api.service.OrderService"
+            timeout="60000"
+            check="false"
+    />
+</beans>

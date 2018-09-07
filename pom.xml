@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jackson.puppy</groupId>
+    <artifactId>distributed-transaction</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>distribution-transaction</name>
+    <description>Demo project for Distributed Transaction</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
+        <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
+        <dubbo.version>2.6.2</dubbo.version>
+        <caffeine.version>2.6.2</caffeine.version>
+        <mybatis-spring-boot.version>1.3.2</mybatis-spring-boot.version>
+        <mysql-connector.version>8.0.12</mysql-connector.version>
+        <curator.version>4.0.1</curator.version>
+        <zookeeper.version>3.5.4-beta</zookeeper.version>
+        <aspectjweaver.version>1.9.1</aspectjweaver.version>
+        <spring.version>5.0.8.RELEASE</spring.version>
+        <quartz.version>2.3.0</quartz.version>
+        <fastjson.version>1.2.46</fastjson.version>
+        <kryo.version>4.0.2</kryo.version>
+        <slf4j.version>1.7.25</slf4j.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>demo-dubbo</module>
+        <module>tcc-transaction</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,2 @@
+tccJavassist=org.jackson.puppy.tcc.transaction.dubbo.proxy.javassist.TccJavassistProxyFactory
+tccJdk=org.jackson.puppy.tcc.transaction.dubbo.proxy.jdk.TccJdkProxyFactory
