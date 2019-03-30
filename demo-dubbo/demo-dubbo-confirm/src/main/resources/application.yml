@@ -3,7 +3,7 @@ server:
 
 spring:
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/confirm?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://127.0.0.1:3306/CONFIRM?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: kevin
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -24,7 +24,7 @@ spring:
                 acknowledge-mode: manual
     quartz:
         datasource:
-            url: jdbc:mysql://127.0.0.1:3306/qrtz_confirm?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+            url: jdbc:mysql://127.0.0.1:3306/QRTZ_CONFIRM?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
             username: root
             password: kevin
             driver-class-name: com.mysql.cj.jdbc.Driver

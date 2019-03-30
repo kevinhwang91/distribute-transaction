@@ -1,8 +1,8 @@
 package org.jackson.puppy.tcc.transaction.dubbo.proxy.jdk;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
-import com.alibaba.dubbo.rpc.Invoker;
-import com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler;
+import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.dubbo.rpc.Invoker;
+import org.apache.dubbo.rpc.proxy.InvokerInvocationHandler;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.jackson.puppy.tcc.transaction.api.Propagation;
 import org.jackson.puppy.tcc.transaction.api.TccTransactional;

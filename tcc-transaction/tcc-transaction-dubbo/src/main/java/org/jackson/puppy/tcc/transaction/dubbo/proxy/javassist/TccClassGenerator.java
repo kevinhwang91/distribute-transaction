@@ -1,6 +1,5 @@
 package org.jackson.puppy.tcc.transaction.dubbo.proxy.javassist;
 
-import com.alibaba.dubbo.common.utils.ReflectUtils;
 import javassist.*;
 import javassist.bytecode.AnnotationsAttribute;
 import javassist.bytecode.ConstPool;
@@ -8,6 +7,7 @@ import javassist.bytecode.annotation.Annotation;
 import javassist.bytecode.annotation.ClassMemberValue;
 import javassist.bytecode.annotation.EnumMemberValue;
 import javassist.bytecode.annotation.StringMemberValue;
+import org.apache.dubbo.common.utils.ReflectUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

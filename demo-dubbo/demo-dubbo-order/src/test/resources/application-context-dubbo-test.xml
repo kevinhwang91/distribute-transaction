@@ -6,9 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="test_order_service">
-        <dubbo:parameter key="qos.enable" value="false"/>
-    </dubbo:application>
+    <dubbo:application name="test_order_service"/>
 
     <dubbo:protocol name="dubbo" port="20887"/>
 

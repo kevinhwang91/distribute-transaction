@@ -12,9 +12,10 @@
     <artifactId>tcc-transaction-dubbo</artifactId>
 
     <dependencies>
+
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-rpc-dubbo</artifactId>
         </dependency>
 
         <dependency>

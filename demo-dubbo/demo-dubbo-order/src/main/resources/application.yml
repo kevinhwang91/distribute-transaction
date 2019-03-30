@@ -1,6 +1,6 @@
 spring:
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/order?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://127.0.0.1:3306/ORDER?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: kevin
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -26,7 +26,7 @@ spring:
         port: 6379
     quartz:
         datasource:
-            url: jdbc:mysql://127.0.0.1:3306/qrtz_order?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+            url: jdbc:mysql://127.0.0.1:3306/QRTZ_ORDER?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
             username: root
             password: kevin
             driver-class-name: com.mysql.cj.jdbc.Driver
@@ -52,13 +52,11 @@ spring:
 dubbo:
     application:
         name: orderDubboService
-        parameter:
-            qos:
-                enable: false
     protocol:
         name: dubbo
         port: 20888
         threadpool: cached
+        serialization: kryo
     registry:
         protocol: zookeeper
         address: zookeeper://127.0.0.1:2181
@@ -76,7 +74,7 @@ tcc:
         recoverDuration: 60
         cronExpression: 0/30 * * * * ?
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/order?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://127.0.0.1:3306/ORDER?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: kevin
         driver-class-name: com.mysql.cj.jdbc.Driver

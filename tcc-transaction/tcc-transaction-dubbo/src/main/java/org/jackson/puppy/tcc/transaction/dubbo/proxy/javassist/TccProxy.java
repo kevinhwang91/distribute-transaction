@@ -15,9 +15,9 @@
  */
 package org.jackson.puppy.tcc.transaction.dubbo.proxy.javassist;
 
-import com.alibaba.dubbo.common.bytecode.Proxy;
-import com.alibaba.dubbo.common.utils.ClassHelper;
-import com.alibaba.dubbo.common.utils.ReflectUtils;
+import org.apache.dubbo.common.bytecode.Proxy;
+import org.apache.dubbo.common.utils.ClassHelper;
+import org.apache.dubbo.common.utils.ReflectUtils;
 import org.jackson.puppy.tcc.transaction.api.TccTransactional;
 
 import java.lang.ref.Reference;

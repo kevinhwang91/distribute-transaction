@@ -1,7 +1,7 @@
 package org.jackson.puppy.tcc.transaction.dubbo.context;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
-import com.alibaba.dubbo.rpc.RpcContext;
+import org.apache.dubbo.common.utils.StringUtils;
+import org.apache.dubbo.rpc.RpcContext;
 import com.alibaba.fastjson.JSON;
 import org.jackson.puppy.tcc.transaction.api.TransactionContext;
 import org.jackson.puppy.tcc.transaction.api.TransactionContextEditor;
