@@ -5,7 +5,7 @@
     <parent>
         <artifactId>demo-dubbo</artifactId>
         <groupId>org.jackson.puppy</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${demo-dubbo.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -67,4 +67,42 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution>
+                        <id>docker</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${basedir}/../build_app_docker.sh</executable>
+                            <arguments>
+                                <argument>${project.artifactId}</argument>
+                                <argument>${project.version}</argument>
+                                <argument>kevinhwang</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>demo-dubbo</artifactId>
         <groupId>org.jackson.puppy</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${demo-dubbo.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
