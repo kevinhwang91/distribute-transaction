@@ -1,0 +1,155 @@
+version: "3.6"
+
+services:
+  mysql:
+    image: "mysql:5.7.25"
+    container_name: demo-dubbo-mysql
+    networks:
+      - demo-dubbo
+    ports:
+      - 43306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: kevin
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    command: ["--max-connections=500"]
+
+  redis:
+    image: "redis:3.2-alpine"
+    container_name: demo-dubbo-redis
+    command: ["redis-server"]
+    networks:
+      - demo-dubbo
+    ports:
+      - 46379:6379
+
+  rabbitmq:
+    image: "rabbitmq:3.7-management-alpine"
+    container_name: demo-dubbo-rabbitmq
+    networks:
+      - demo-dubbo
+    ports:
+      - 45672:5672
+      - 55672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: kevin
+      RABBITMQ_DEFAULT_PASS: kevin
+
+  zoo1:
+    image: zookeeper:3.4.13
+    container_name: demo-dubbo-zoo1
+    networks:
+      - demo-dubbo
+    ports:
+      - 42181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+  zoo2:
+    image: zookeeper:3.4.13
+    container_name: demo-dubbo-zoo2
+    networks:
+      - demo-dubbo
+    ports:
+      - 42182:2181
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zoo3:2888:3888
+
+  zoo3:
+    image: zookeeper:3.4.13
+    container_name: demo-dubbo-zoo3
+    networks:
+      - demo-dubbo
+    ports:
+      - 42183:2181
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888
+
+  confirm:
+    image: kevinhwang/demo-dubbo-confirm:0.0.2
+    container_name: demo-dubbo-confirm
+    depends_on:
+      - mysql
+      - rabbitmq
+    networks:
+      - demo-dubbo
+    ports:
+      - 49001:9001
+    environment:
+      MYSQL_HOST: mysql
+      RABBITMQ_HOST: rabbitmq
+
+  order:
+    image: kevinhwang/demo-dubbo-order:0.0.2
+    container_name: demo-dubbo-order
+    depends_on:
+      - mysql
+      - rabbitmq
+      - redis
+      - zoo1
+      - zoo2
+      - zoo3
+    networks:
+      - demo-dubbo
+    ports:
+      - 40888:20888
+    environment:
+      MYSQL_HOST: mysql
+      RABBITMQ_HOST: rabbitmq
+      REDIS_HOST: redis
+      ZOO1_HOST: zoo1
+      ZOO2_HOST: zoo2
+      ZOO3_HOST: zoo3
+      ZOO1_PORT: 2181
+      ZOO2_PORT: 2181
+      ZOO3_PORT: 2181
+
+  bill:
+    image: kevinhwang/demo-dubbo-bill:0.0.2
+    container_name: demo-dubbo-bill
+    depends_on:
+      - mysql
+      - zoo1
+      - zoo2
+      - zoo3
+    networks:
+      - demo-dubbo
+    ports:
+      - 40889:20889
+    environment:
+      MYSQL_HOST: mysql
+      ZOO1_HOST: zoo1
+      ZOO2_HOST: zoo2
+      ZOO3_HOST: zoo3
+      ZOO1_PORT: 2181
+      ZOO2_PORT: 2181
+      ZOO3_PORT: 2181
+
+  holdings:
+    image: kevinhwang/demo-dubbo-holdings:0.0.2
+    container_name: demo-dubbo-holdings
+    depends_on:
+      - mysql
+      - zoo1
+      - zoo2
+      - zoo3
+    networks:
+      - demo-dubbo
+    ports:
+      - 40890:20890
+    environment:
+      MYSQL_HOST: mysql
+      RABBITMQ_HOST: rabbitmq
+      ZOO1_HOST: zoo1
+      ZOO2_HOST: zoo2
+      ZOO3_HOST: zoo3
+      ZOO1_PORT: 2181
+      ZOO2_PORT: 2181
+      ZOO3_PORT: 2181
+
+networks:
+  demo-dubbo:
+    name: demo-dubbo

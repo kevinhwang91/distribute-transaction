@@ -1,6 +1,17 @@
+host:
+    mysql: ${MYSQL_HOST:127.0.0.1}
+    zoo1: ${ZOO1_HOST:127.0.0.1}
+    zoo2: ${ZOO2_HOST:127.0.0.1}
+    zoo3: ${ZOO3_HOST:127.0.0.1}
+
+port:
+    zoo1: ${ZOO1_PORT:2181}
+    zoo2: ${ZOO2_PORT:2182}
+    zoo3: ${ZOO3_PORT:2183}
+
 spring:
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://${host.mysql}:3306/BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: kevin
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,7 +20,7 @@ spring:
             initializationFailTimeout: 10000
     quartz:
         datasource:
-            url: jdbc:mysql://127.0.0.1:3306/QRTZ_BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+            url: jdbc:mysql://${host.mysql}:3306/QRTZ_BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
             username: root
             password: kevin
             driver-class-name: com.mysql.cj.jdbc.Driver
@@ -45,7 +56,7 @@ dubbo:
         serialization: kryo
     registry:
         protocol: zookeeper
-        address: 127.0.0.1:2181
+        address: ${host.zoo1}:${port.zoo1},${host.zoo2}:${port.zoo2},${host.zoo3}:${port.zoo3}
     provider:
         version: 1.0.0
     consumer:
@@ -60,7 +71,7 @@ tcc:
         recoverDuration: 60
         cronExpression: 0/30 * * * * ?
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+        url: jdbc:mysql://${host.mysql}:3306/BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
         password: kevin
         driver-class-name: com.mysql.cj.jdbc.Driver
