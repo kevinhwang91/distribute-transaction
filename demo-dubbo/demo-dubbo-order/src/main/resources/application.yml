@@ -6,6 +6,8 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         hikari:
             maximum-pool-size: 15
+            initializationFailTimeout: 10000
+
     rabbitmq:
         username: kevin
         password: kevin
@@ -30,6 +32,9 @@ spring:
             username: root
             password: kevin
             driver-class-name: com.mysql.cj.jdbc.Driver
+            hikari:
+                maximum-pool-size: 15
+                initializationFailTimeout: 10000
             properties:
                 org:
                     quartz:

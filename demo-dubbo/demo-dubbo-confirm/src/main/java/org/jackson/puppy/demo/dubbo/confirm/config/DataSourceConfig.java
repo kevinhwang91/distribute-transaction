@@ -36,6 +36,7 @@ public class DataSourceConfig {
 	}
 
 	@Bean
+	@ConfigurationProperties("spring.quartz.datasource.hikari")
 	public DataSource quartzDataSource() {
 		return quartzDataSourceProperties().initializeDataSourceBuilder().build();
 	}

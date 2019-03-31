@@ -6,12 +6,16 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
         hikari:
             maximum-pool-size: 15
+            initializationFailTimeout: 10000
     quartz:
         datasource:
             url: jdbc:mysql://127.0.0.1:3306/QRTZ_HOLDINGS?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
             username: root
             password: kevin
             driver-class-name: com.mysql.cj.jdbc.Driver
+            hikari:
+                maximum-pool-size: 15
+                initializationFailTimeout: 10000
         properties:
             org:
                 quartz:
@@ -62,6 +66,7 @@ tcc:
         driver-class-name: com.mysql.cj.jdbc.Driver
         hikari:
             maximum-pool-size: 15
+            initializationFailTimeout: 10000
     isTested: true
 
 logging:
