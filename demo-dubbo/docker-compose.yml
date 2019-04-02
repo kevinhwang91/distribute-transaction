@@ -79,6 +79,7 @@ services:
     ports:
       - 49001:9001
     environment:
+      ORDER_HOST: order
       MYSQL_HOST: mysql
       RABBITMQ_HOST: rabbitmq
 
@@ -95,6 +96,7 @@ services:
     networks:
       - demo-dubbo
     ports:
+      - 49002:9002
       - 40888:20888
     environment:
       MYSQL_HOST: mysql

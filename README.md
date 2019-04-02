@@ -19,7 +19,7 @@
 order_number：订单号，agency_fee：基金分销商获取的费用，unit：基金申购确认的份额
   
 * 模块介绍：  
-demo里面有4个模块分别是confirm、order、bill和holdings。  
+demo里面有4个服务分别是confirm、order、bill和holdings。  
 confirm是简单模拟基金公司确认数据，插入原始数据并推送到order。  
 order是用户下单模块，更新确认后的状态。  
 bill是对账模块，表结构与order是一对一关系。  

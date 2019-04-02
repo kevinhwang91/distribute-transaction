@@ -31,7 +31,7 @@ public class OrderApp {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext configurableApplicationContext = new SpringApplicationBuilder(OrderApp.class)
-				.web(WebApplicationType.NONE)
+				.web(WebApplicationType.SERVLET)
 				.run(args);
 		Arrays.stream(configurableApplicationContext.getBeanDefinitionNames())
 				.sorted().forEach(beanName -> logger.info("Loaded Bean: {}", beanName));

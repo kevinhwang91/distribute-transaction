@@ -28,7 +28,7 @@ import static org.springframework.amqp.rabbit.core.RabbitAdmin.QUEUE_MESSAGE_COU
 @ActiveProfiles("test")
 @ImportAutoConfiguration(classes = RabbitAutoConfiguration.class)
 @ContextConfiguration(initializers = ConfigFileApplicationContextInitializer.class)
-public class ConfirmTests {
+public class ConfirmAppTests {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
 

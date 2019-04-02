@@ -1,6 +1,7 @@
 host:
     mysql: ${MYSQL_HOST:127.0.0.1}
     rabbitmq: ${RABBITMQ_HOST:127.0.0.1}
+    order: ${ORDER_HOST:127.0.0.1}
 
 server:
     port: 9001

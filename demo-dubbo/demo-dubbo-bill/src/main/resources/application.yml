@@ -67,9 +67,9 @@ tcc:
         domain: BILL
         tbSuffix: _BILL
     recover:
-        maxRetryCount: 30
-        recoverDuration: 60
-        cronExpression: 0/30 * * * * ?
+        maxRetryCount: 10
+        recoverDuration: 30
+        cronExpression: 0/15 * * * * ?
     datasource:
         url: jdbc:mysql://${host.mysql}:3306/BILL?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root

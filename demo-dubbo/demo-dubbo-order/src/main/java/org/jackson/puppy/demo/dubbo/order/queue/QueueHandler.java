@@ -58,7 +58,7 @@ public class QueueHandler {
 			logger.warn("Throw Exception. Retry again handleOrder.", ex);
 			Long retryCount = DispatcherHandler.getRetryCount(messageProperties);
 			if (retryCount < 10) {
-				MqMessageWithDelay msgWithDelay = new MqMessageWithDelay(message, ConfirmQueue.CONFIRM_EXCHANGE, ConfirmQueue.CONFIRM_ROUTE_KEY, 30 * 1000);
+				MqMessageWithDelay msgWithDelay = new MqMessageWithDelay(message, ConfirmQueue.CONFIRM_EXCHANGE, ConfirmQueue.CONFIRM_ROUTE_KEY, 15 * 1000);
 				try {
 					//  发送数据用同步确认替代异步确认，保证消息发到MQ
 					//  一旦抛出异常这条Message就能返回RabbitMq
