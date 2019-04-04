@@ -52,6 +52,9 @@ public class HoldingsServiceImpl implements HoldingsService {
 
 		int ret = doServiceWithOptimisticLock(holdingsDto.getAccountNumber(),
 				holdingsDto.getUnit(), this::tryUnit, 100, 10 * 1000);
+		if (isTestedTcc && ((int) (Math.random() * 100) == 0)) {
+			int throwException = 1 / 0;
+		}
 		if (ret > 0) {
 			HoldingsResource holdingsResource = new HoldingsResource();
 			holdingsResource.setOrderNumber(orderNumber);
@@ -77,6 +80,9 @@ public class HoldingsServiceImpl implements HoldingsService {
 		if (ret == 0) {
 			return;
 		}
+		if (isTestedTcc && ((int) (Math.random() * 100) == 0)) {
+			int throwException = 1 / 0;
+		}
 		doServiceWithOptimisticLock(holdingsDto.getAccountNumber(),
 				holdingsDto.getUnit(), this::confirmUnit, 100, 10 * 1000);
 
@@ -95,6 +101,9 @@ public class HoldingsServiceImpl implements HoldingsService {
 				HoldingsResourceStatus.PENDING.getStatus(), holdingsDto.getDate());
 		if (ret == 0) {
 			return;
+		}
+		if (isTestedTcc && ((int) (Math.random() * 100) == 0)) {
+			int throwException = 1 / 0;
 		}
 		doServiceWithOptimisticLock(holdingsDto.getAccountNumber(),
 				holdingsDto.getUnit(), this::cancelUnit, 100, 10 * 1000);
